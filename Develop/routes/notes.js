@@ -1,9 +1,15 @@
-const express = require('express');
-const app = express();
+const app = require('express').Router();
+const fs = require ('fs');
+const notes = require('../db/db.json')
 
-app.get('/api/notes', (req, res) => {
-    res.json(`${__dirname}`, '/notes')
+
+app.get('/notes', (req, res) => {
+    res.json(notes)
 });
+
+app.get('/notes', (req, res) => {
+    res.sendFile(`${__dirname}`, '../public/notes.html')
+})
 
 
 module.exports = app;

@@ -1,6 +1,7 @@
 //dependencies
 const express = require("express");
 const fs = require("fs");
+const path = require("path")
 // const api = require("../routes/htmlRoute.js");
 const database = require("./db/db.json")
 //sets up express server and initial port
@@ -18,7 +19,7 @@ app.use(express.static('public'));
 
 
 //router
-//points server to router files
+//GET routes pointing to home/landing page and notes page
 
 app.get('*', (req, res) =>
     res.sendFile(`${__dirname}`, '/public/index.html')
@@ -29,10 +30,33 @@ app.get('/notes', (req, res) => {
 })
 
 
+//POST route to post notes to notes page
+app
+    .route("/api/notes")
+    .get((req, res) => {
+        res.json(database);
+    });
+//POST
 
-// app.use('/', api);
 
+app.post("/api/notes", (req, res) => {
+    console.log(database);
+    console.log(req.body);
+    database.push(req.body);
+    fs.writeFile("./db/db.json", JSON.stringify(database, null, 2), (err) =>
+        err ? console.log(err) : console.log("File written successfully")
+    );
+    res.json(database);
+});
 
+//Routes
+app.get("/", (req, res) => {
+    res.json(database);
+});
+
+app.get("/api/notes", (req, res) => {
+    res.json(`${__dirname}`, "../db/db.json");
+});
 
 app.listen(PORT, () => 
     console.log(`App listening at http://localhost:${PORT} `)

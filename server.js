@@ -1,8 +1,8 @@
 //packages
-const fs = require('fs');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
-
+const uuid = require('./helpers/uuid');
 const noteData = require('./db/db.json');
 
 //initialize express and port
@@ -39,6 +39,18 @@ app.post('/api/notes', (req, res) => {
             title,
             text,
             note_id: uuid(),
+        };
+        //convert data to a string so it can be saved
+        const noteString = JSON.stringify(newNote);
+
+        //write string to a file
+        fs.writeFile(`./db/${newNote.title}`.json, noteString, (err) => 
+            err ? console.error(err) : console.log(`${newNote.title} has been saved`)
+        );
+
+        const response = {
+            status: 'success',
+            body: newNote,
         };
 
         console.log(response);

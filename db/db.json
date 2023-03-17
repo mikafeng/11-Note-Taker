@@ -1,15 +1,1 @@
-
-[
-    {
-        "title": "Test Title",
-        "text": "Test text"
-    },
-    {
-        "title": "Mac",
-        "text": "A dog that acts like a cat"
-    },
-    {
-        "title": "Walter",
-        "text": "The best boy"
-    }
-]
+[{"title":"New note","text":"nw note test","id":"e3cb"},{"title":"Note 2","text":"add note ","id":"95c1"},{"title":"note 3","text":"note 3","id":"2194"},{"title":"test note","text":"test test","id":"67d2"},{"title":"Another Try","text":"more notes","id":"0677"},{"title":"Get another note","text":"asdfasdf","id":"f731"},{"title":"kdkdkdiemd","text":"dfsadfasdf","id":"ab0e"}]
